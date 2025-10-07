@@ -17,21 +17,28 @@ const Body: React.FC = () => (
             <h2>Skills</h2>
             <div className="skills-container">
                 {[
-                    { name: 'React', level: 90 },
-                    { name: 'Flutter', level: 40 },
-                    { name: 'TypeScript', level: 85 },
-                    { name: 'JavaScript', level: 90 },
-                    { name: 'HTML & CSS', level: 95 },
-                    { name: 'Vite x React', level: 100 },
-                    { name: 'NodeJS', level: 85 },
-                    { name: 'Squarespace', level: 100 },
-                    { name: 'Git & GitHub', level: 75 },
+                    { name: 'React', level: 90, icon: './icons/react-icon.svg' },
+                    { name: 'Flutter', level: 40, icon: './icons/flutter-icon.svg' },
+                    { name: 'TypeScript', level: 85, icon: './icons/ts-icon.svg' },
+                    { name: 'JavaScript', level: 90, icon: './icons/js-icon.svg' },
+                    { name: 'HTML & CSS', level: 95, icon: './icons/html-icon.svg' },
+                    { name: 'Vite', level: 100, icon: './icons/vite-icon.svg' },
+                    { name: 'NodeJS', level: 85, icon: './icons/node-icon.svg' },
+                    { name: 'Squarespace', level: 100, icon: './icons/ss-icon.png' },
+                    { name: 'Git & GitHub', level: 75, icon: './icons/gh-icon.svg' },
                 ]
-                    .sort((a, b) => b.level - a.level) //sorting from highest to lowest
+                    .sort((a, b) => b.level - a.level)
                     .map((skill) => (
                         <div className="skill-bar" key={skill.name}>
                             <div className="skill-info">
-                                <span>{skill.name}</span>
+                                <div className="skill-title">
+                                    <img
+                                        src={skill.icon}
+                                        alt={`${skill.name} icon`}
+                                        className="skill-icon"
+                                    />
+                                    <span>{skill.name}</span>
+                                </div>
                                 <span>{skill.level}%</span>
                             </div>
                             <div className="progress-bg">
@@ -42,10 +49,8 @@ const Body: React.FC = () => (
                             </div>
                         </div>
                     ))}
-
             </div>
         </section>
-
 
         <section id="projects" className="portfolio-section">
             <h2>Projects</h2>

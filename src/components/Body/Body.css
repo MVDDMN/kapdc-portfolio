@@ -48,6 +48,19 @@
     transition: width 1s ease-in-out;
 }
 
+.skill-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skill-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+
 
 /* Projects */
 .projects-grid {
