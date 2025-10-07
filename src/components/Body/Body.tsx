@@ -59,7 +59,7 @@ const Body: React.FC = () => (
                 </div>
 
                 <div className="project-card">
-                    <a href="#" className="project-overlay">
+                    <a href="https://traccs-web-frontend.onrender.com" className="project-overlay">
                         <span>View Project</span>
                     </a>
                     <b className="project-card-title">TRACCS</b>
