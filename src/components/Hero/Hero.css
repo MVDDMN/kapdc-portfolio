@@ -1,0 +1,25 @@
+.portfolio-hero {
+    text-align: center;
+    background-color: #eee;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.portfolio-hero h1 {
+    font-size: 2.8rem;
+    color: #3a3a5a;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-hero p {
+    font-size: 1.2rem;
+    color: #6c6c8a;
+}
+
+.profile-icon {
+    width: 25%;
+    height: 25%;
+    border-radius: 50%; /* make it circular */
+    border: 5px solid var(--main-blue);
+}
