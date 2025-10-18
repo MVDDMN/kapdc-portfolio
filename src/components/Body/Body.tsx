@@ -15,16 +15,40 @@ const Body: React.FC = () => (
 
         <section id="skills" className="portfolio-section">
             <h2>Skills</h2>
+
+            {/* Frontend Development */}
+            <h3 className="skills-subtitle">Frontend Development</h3>
             <div className="skills-container">
                 {[
                     { name: 'React', level: 90, icon: './icons/react-icon.svg' },
-                    { name: 'Flutter', level: 40, icon: './icons/flutter-icon.svg' },
                     { name: 'TypeScript', level: 85, icon: './icons/ts-icon.svg' },
                     { name: 'JavaScript', level: 90, icon: './icons/js-icon.svg' },
                     { name: 'HTML & CSS', level: 95, icon: './icons/html-icon.svg' },
                     { name: 'Vite', level: 100, icon: './icons/vite-icon.svg' },
-                    { name: 'NodeJS', level: 85, icon: './icons/node-icon.svg' },
                     { name: 'Squarespace', level: 100, icon: './icons/ss-icon.png' },
+                ]
+                    .sort((a, b) => b.level - a.level)
+                    .map((skill) => (
+                        <div className="skill-bar" key={skill.name}>
+                            <div className="skill-info">
+                                <div className="skill-title">
+                                    <img src={skill.icon} alt={`${skill.name} icon`} className="skill-icon" />
+                                    <span>{skill.name}</span>
+                                </div>
+                                <span>{skill.level}%</span>
+                            </div>
+                            <div className="progress-bg">
+                                <div className="progress-fill" style={{ width: `${skill.level}%` }}></div>
+                            </div>
+                        </div>
+                    ))}
+            </div>
+
+            {/* Backend & Tools */}
+            <h3 className="skills-subtitle">Backend & Tools</h3>
+            <div className="skills-container">
+                {[
+                    { name: 'NodeJS', level: 85, icon: './icons/node-icon.svg' },
                     { name: 'Git & GitHub', level: 75, icon: './icons/gh-icon.svg' },
                 ]
                     .sort((a, b) => b.level - a.level)
@@ -32,23 +56,37 @@ const Body: React.FC = () => (
                         <div className="skill-bar" key={skill.name}>
                             <div className="skill-info">
                                 <div className="skill-title">
-                                    <img
-                                        src={skill.icon}
-                                        alt={`${skill.name} icon`}
-                                        className="skill-icon"
-                                    />
+                                    <img src={skill.icon} alt={`${skill.name} icon`} className="skill-icon" />
                                     <span>{skill.name}</span>
                                 </div>
                                 <span>{skill.level}%</span>
                             </div>
                             <div className="progress-bg">
-                                <div
-                                    className="progress-fill"
-                                    style={{ width: `${skill.level}%` }}
-                                ></div>
+                                <div className="progress-fill" style={{ width: `${skill.level}%` }}></div>
                             </div>
                         </div>
                     ))}
+            </div>
+
+            {/* Mobile Development */}
+            <h3 className="skills-subtitle">Mobile Development</h3>
+            <div className="skills-container">
+                {[
+                    { name: 'Flutter', level: 40, icon: './icons/flutter-icon.svg' },
+                ].map((skill) => (
+                    <div className="skill-bar" key={skill.name}>
+                        <div className="skill-info">
+                            <div className="skill-title">
+                                <img src={skill.icon} alt={`${skill.name} icon`} className="skill-icon" />
+                                <span>{skill.name}</span>
+                            </div>
+                            <span>{skill.level}%</span>
+                        </div>
+                        <div className="progress-bg">
+                            <div className="progress-fill" style={{ width: `${skill.level}%` }}></div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </section>
 
