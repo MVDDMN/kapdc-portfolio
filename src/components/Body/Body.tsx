@@ -4,6 +4,26 @@ import './Body.css';
 const Body: React.FC = () => (
     <main className="portfolio-body">
 
+        <section id="resume" className="portfolio-section">
+            <h2>My Documents</h2>
+            <div className="resume-downloads">
+                <a
+                    href="/files/cv.pdf"
+                    download
+                    className="resume-button"
+                >
+                    Download My CV
+                </a>
+                <a
+                    href="/files/resume.pdf"
+                    download
+                    className="resume-button"
+                >
+                    Download My Resume
+                </a>
+            </div>
+        </section>
+
         <section id="about" className="portfolio-section">
             <h2>About Me</h2>
             <p>
@@ -49,6 +69,7 @@ const Body: React.FC = () => (
             <div className="skills-container">
                 {[
                     { name: 'NodeJS', level: 85, icon: './icons/node-icon.svg' },
+                    { name: 'MongoDB', level: 90, icon: './icons/mdb-icon.png' },
                     { name: 'Git & GitHub', level: 75, icon: './icons/gh-icon.svg' },
                 ]
                     .sort((a, b) => b.level - a.level)
