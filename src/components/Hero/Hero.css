@@ -11,22 +11,67 @@
     background-attachment: fixed;
 }
 
+/* Responsive text */
 .portfolio-hero h1 {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    /* responsive font size between 2rem and 3rem */
     color: var(--white);
     margin-bottom: 0.5rem;
 }
 
 .portfolio-hero p {
-    font-size: 1.2rem;
-    color: var(--white,0.05);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    /* responsive paragraph */
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
+/* Profile icon responsive */
 .profile-icon {
-    width: 25%;
-    height: 25%;
+    width: clamp(100px, 25%, 200px);
+    height: clamp(100px, 25%, 200px);
     border-radius: 50%;
-    /* make it circular */
-    border: 5px solid rgb(0 0 0/var(--tw-bg-opacity,0.5));
+    border: 5px solid rgba(0, 0, 0, 0.5);
     box-shadow: 0 4px 32px rgba(0, 17, 255, 0.7);
+    margin: 1rem auto;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+    .portfolio-hero {
+        padding: 1.5rem 1rem;
+    }
+
+    .portfolio-hero h1 {
+        font-size: 2rem;
+    }
+
+    .portfolio-hero p {
+        font-size: 1rem;
+    }
+
+    .profile-icon {
+        width: 40%;
+        height: 40%;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-hero {
+        padding: 1rem 0.5rem;
+    }
+
+    .portfolio-hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .portfolio-hero p {
+        font-size: 0.9rem;
+    }
+
+    .profile-icon {
+        width: 50%;
+        height: 50%;
+    }
 }
