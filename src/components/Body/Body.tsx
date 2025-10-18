@@ -1,54 +1,97 @@
-import React from 'react';
+import React, { useState } from "react";
+import type { Project } from "../Data/projectsData";
+import { projects } from "../Data/projectsData";
+import ProjectModal from "./ProjectModal";
+
 import './Body.css';
 
-const Body: React.FC = () => (
-    <main className="portfolio-body">
+const Body: React.FC = () => {
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-        <section id="resume" className="portfolio-section">
-            <h2>My Documents</h2>
-            <div className="resume-downloads">
-                <a
-                    href="/files/cv.pdf"
-                    download
-                    className="resume-button"
-                >
-                    Download My CV
-                </a>
-                <a
-                    href="/files/resume.pdf"
-                    download
-                    className="resume-button"
-                >
-                    Download My Resume
-                </a>
-            </div>
-        </section>
+    return (
+        <main className="portfolio-body">
 
-        <section id="about" className="portfolio-section">
-            <h2>About Me</h2>
-            <p>
-                Versatile Full Stack Developer passionate about turning ideas into seamless digital experiences.
-                I specialize in building and maintaining both web and mobile applications,
-                combining front-end creativity with back-end efficiency to deliver scalable and user-friendly solutions.
-            </p>
-        </section>
+            <section id="resume" className="portfolio-section">
+                <h2>My Documents</h2>
+                <div className="resume-downloads">
+                    <a href="/files/cv.pdf" download className="resume-button">
+                        Download My CV
+                    </a>
+                    <a href="/files/resume.pdf" download className="resume-button">
+                        Download My Resume
+                    </a>
+                </div>
+            </section>
 
-        <section id="skills" className="portfolio-section">
-            <h2>Skills</h2>
+            <section id="about" className="portfolio-section">
+                <h2>About Me</h2>
+                <p>
+                    Versatile Full Stack Developer passionate about turning ideas into seamless digital experiences.
+                    I specialize in building and maintaining both web and mobile applications,
+                    combining front-end creativity with back-end efficiency to deliver scalable and user-friendly solutions.
+                </p>
+            </section>
 
-            {/* Frontend Development */}
-            <h3 className="skills-subtitle">Frontend Development</h3>
-            <div className="skills-container">
-                {[
-                    { name: 'React', level: 90, icon: './icons/react-icon.svg' },
-                    { name: 'TypeScript', level: 85, icon: './icons/ts-icon.svg' },
-                    { name: 'JavaScript', level: 90, icon: './icons/js-icon.svg' },
-                    { name: 'HTML & CSS', level: 95, icon: './icons/html-icon.svg' },
-                    { name: 'Vite', level: 100, icon: './icons/vite-icon.svg' },
-                    { name: 'Squarespace', level: 100, icon: './icons/ss-icon.png' },
-                ]
-                    .sort((a, b) => b.level - a.level)
-                    .map((skill) => (
+            <section id="skills" className="portfolio-section">
+                <h2>Skills</h2>
+
+                {/* Frontend Development */}
+                <h3 className="skills-subtitle">Frontend Development</h3>
+                <div className="skills-container">
+                    {[
+                        { name: 'React', level: 90, icon: './icons/react-icon.svg' },
+                        { name: 'TypeScript', level: 85, icon: './icons/ts-icon.svg' },
+                        { name: 'JavaScript', level: 90, icon: './icons/js-icon.svg' },
+                        { name: 'HTML & CSS', level: 95, icon: './icons/html-icon.svg' },
+                        { name: 'Vite', level: 100, icon: './icons/vite-icon.svg' },
+                        { name: 'Squarespace', level: 100, icon: './icons/ss-icon.png' },
+                    ]
+                        .sort((a, b) => b.level - a.level)
+                        .map((skill) => (
+                            <div className="skill-bar" key={skill.name}>
+                                <div className="skill-info">
+                                    <div className="skill-title">
+                                        <img src={skill.icon} alt={`${skill.name} icon`} className="skill-icon" />
+                                        <span>{skill.name}</span>
+                                    </div>
+                                    <span>{skill.level}%</span>
+                                </div>
+                                <div className="progress-bg">
+                                    <div className="progress-fill" style={{ width: `${skill.level}%` }}></div>
+                                </div>
+                            </div>
+                        ))}
+                </div>
+
+                {/* Backend & Tools */}
+                <h3 className="skills-subtitle">Backend & Tools</h3>
+                <div className="skills-container">
+                    {[
+                        { name: 'NodeJS', level: 85, icon: './icons/node-icon.svg' },
+                        { name: 'MongoDB', level: 90, icon: './icons/mdb-icon.png' },
+                        { name: 'Git & GitHub', level: 75, icon: './icons/gh-icon.svg' },
+                    ]
+                        .sort((a, b) => b.level - a.level)
+                        .map((skill) => (
+                            <div className="skill-bar" key={skill.name}>
+                                <div className="skill-info">
+                                    <div className="skill-title">
+                                        <img src={skill.icon} alt={`${skill.name} icon`} className="skill-icon" />
+                                        <span>{skill.name}</span>
+                                    </div>
+                                    <span>{skill.level}%</span>
+                                </div>
+                                <div className="progress-bg">
+                                    <div className="progress-fill" style={{ width: `${skill.level}%` }}></div>
+                                </div>
+                            </div>
+                        ))}
+                </div>
+
+                {/* Mobile Development */}
+                <h3 className="skills-subtitle">Mobile Development</h3>
+                <div className="skills-container">
+                    {[{ name: 'Flutter', level: 40, icon: './icons/flutter-icon.svg' }].map((skill) => (
                         <div className="skill-bar" key={skill.name}>
                             <div className="skill-info">
                                 <div className="skill-title">
@@ -62,154 +105,112 @@ const Body: React.FC = () => (
                             </div>
                         </div>
                     ))}
-            </div>
+                </div>
+            </section>
 
-            {/* Backend & Tools */}
-            <h3 className="skills-subtitle">Backend & Tools</h3>
-            <div className="skills-container">
-                {[
-                    { name: 'NodeJS', level: 85, icon: './icons/node-icon.svg' },
-                    { name: 'MongoDB', level: 90, icon: './icons/mdb-icon.png' },
-                    { name: 'Git & GitHub', level: 75, icon: './icons/gh-icon.svg' },
-                ]
-                    .sort((a, b) => b.level - a.level)
-                    .map((skill) => (
-                        <div className="skill-bar" key={skill.name}>
-                            <div className="skill-info">
-                                <div className="skill-title">
-                                    <img src={skill.icon} alt={`${skill.name} icon`} className="skill-icon" />
-                                    <span>{skill.name}</span>
-                                </div>
-                                <span>{skill.level}%</span>
-                            </div>
-                            <div className="progress-bg">
-                                <div className="progress-fill" style={{ width: `${skill.level}%` }}></div>
-                            </div>
+            {/* Projects Section */}
+            <section id="projects" className="portfolio-section">
+                <h2>Projects</h2>
+                <div className="projects-grid">
+                    {projects.map((project) => (
+                        <div className="project-card" key={project.id}>
+                            <a
+                                href="#"
+                                className="project-overlay"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setSelectedProject(project);
+                                }}
+                            >
+                                <span>View Project</span>
+                            </a>
+                            <b className="project-card-title">{project.title}</b>
+                            {project.subtitle && <b className="project-card-sub-title">{project.subtitle}</b>}
+                            <p>{project.shortDescription}</p>
                         </div>
                     ))}
-            </div>
-
-            {/* Mobile Development */}
-            <h3 className="skills-subtitle">Mobile Development</h3>
-            <div className="skills-container">
-                {[
-                    { name: 'Flutter', level: 40, icon: './icons/flutter-icon.svg' },
-                ].map((skill) => (
-                    <div className="skill-bar" key={skill.name}>
-                        <div className="skill-info">
-                            <div className="skill-title">
-                                <img src={skill.icon} alt={`${skill.name} icon`} className="skill-icon" />
-                                <span>{skill.name}</span>
-                            </div>
-                            <span>{skill.level}%</span>
-                        </div>
-                        <div className="progress-bg">
-                            <div className="progress-fill" style={{ width: `${skill.level}%` }}></div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-
-        <section id="projects" className="portfolio-section">
-            <h2>Projects</h2>
-            <div className="projects-grid">
-                <div className="project-card">
-                    <a href="#" className="project-overlay">
-                        <span>View Project</span>
-                    </a>
-                    <b className="project-card-title">Portfolio Website</b>
-                    <p>A personal portfolio built with React and Vite showcasing my work and skills.</p>
                 </div>
+            </section>
 
-                <div className="project-card">
-                    <a href="https://traccs-web-frontend.onrender.com" className="project-overlay">
-                        <span>View Project</span>
+            <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+
+            <section id="contact" className="portfolio-section">
+                <h2>Contact</h2>
+                <div className="contact-cards">
+
+                    <a
+                        className="contact-card"
+                        href="https://mail.google.com/mail/?view=cm&to=dkarlangelo21@gmail.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            viewBox="0 0 256 256"
+                        >
+                            <g fill="#3359ee">
+                                <g transform="scale(5.12,5.12)">
+                                    <path d="M12,23.403v-0.013v-13.001l-0.12,-0.089h-0.01l-2.73,-2.02c-1.67,-1.24 -4.05,-1.18 -5.53,0.28c-0.99,0.98 -1.61,2.34 -1.61,3.85v3.602zM38,23.39v0.013l10,-7.391v-3.602c0,-1.49 -0.6,-2.85 -1.58,-3.83c-1.46,-1.457 -3.765,-1.628 -5.424,-0.403l-2.876,2.123l-0.12,0.089zM14,24.868l10.406,7.692c0.353,0.261 0.836,0.261 1.189,0l10.405,-7.692v-13.001l-11,8.133l-11,-8.133zM38,25.889v15.111c0,0.552 0.448,1 1,1h6.5c1.381,0 2.5,-1.119 2.5,-2.5v-21.003zM12,25.889l-10,-7.392v21.003c0,1.381 1.119,2.5 2.5,2.5h6.5c0.552,0 1,-0.448 1,-1z"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        <div>
+                            <strong>Email</strong>
+                            <p>dkarlangelo21@gmail.com</p>
+                        </div>
                     </a>
-                    <b className="project-card-title">TRACCS</b>
-                    <b className="project-card-sub-title">Taytay Response, Assistance, Community Coordination System</b>
-                    <p>A mobile and web-based app developed in React and Flutter.</p>
+
+                    <a
+                        className="contact-card"
+                        href="https://www.linkedin.com/in/karl-angelo-dela-cruz-a09152282"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="28"
+                            height="28"
+                            viewBox="0 0 256 256"
+                        >
+                            <g fill="#3359ee">
+                                <g transform="scale(5.12,5.12)">
+                                    <path d="M41,4h-32c-2.76,0 -5,2.24 -5,5v32c0,2.76 2.24,5 5,5h32c2.76,0 5,-2.24 5,-5v-32c0,-2.76 -2.24,-5 -5,-5zM17,20v19h-6v-19zM11,14.47c0,-1.4 1.2,-2.47 3,-2.47c1.8,0 2.93,1.07 3,2.47c0,1.4 -1.12,2.53 -3,2.53c-1.8,0 -3,-1.13 -3,-2.53zM39,39h-6c0,0 0,-9.26 0,-10c0,-2 -1,-4 -3.5,-4.04h-0.08c-2.42,0 -3.42,2.06 -3.42,4.04c0,0.91 0,10 0,10h-6v-19h6v2.56c0,0 1.93,-2.56 5.81,-2.56c3.97,0 7.19,2.73 7.19,8.26z"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        <div>
+                            <strong>LinkedIn</strong>
+                            <p>Karl Angelo Dela Cruz</p>
+                        </div>
+                    </a>
+
+
+                    <a className="contact-card" href="https://github.com/MVDDMN" target="_blank" rel="noopener noreferrer">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            viewBox="0,0,256,256"
+                        >
+                            <g fill="#3359ee" fillRule="nonzero" stroke="none">
+                                <g transform="scale(10.66667,10.66667)">
+                                    <path d="M12,2c-5.52344,0 -10,4.47656 -10,10c0,5.52344 4.47656,10 10,10c5.52344,0 10,-4.47656 10,-10c0,-5.52344 -4.47656,-10 -10,-10zM12,4c4.41016,0 8,3.58984 8,8c0,0.46875 -0.04687,0.92969 -0.125,1.375c-0.24609,-0.05469 -0.60937,-0.12109 -1.03125,-0.125c-0.3125,-0.00391 -0.70312,0.04688 -1.03125,0.09375c0.11328,-0.34766 0.1875,-0.73047 0.1875,-1.125c0,-0.96094 -0.46875,-1.85547 -1.21875,-2.59375c0.20703,-0.76953 0.41016,-2.08984 -0.125,-2.625c-1.58203,0 -2.45703,1.12891 -2.5,1.1875c-0.48828,-0.11719 -0.99219,-0.1875 -1.53125,-0.1875c-0.69141,0 -1.35156,0.125 -1.96875,0.3125l0.1875,-0.15625c0,0 -0.87891,-1.21875 -2.5,-1.21875c-0.56641,0.57031 -0.30859,2.01563 -0.09375,2.75c-0.76562,0.73047 -1.25,1.59375 -1.25,2.53125c0,0.32813 0.07813,0.64063 0.15625,0.9375c-0.27734,-0.03125 -1.27734,-0.125 -1.6875,-0.125c-0.36328,0 -0.92578,0.08594 -1.375,0.1875c-0.0625,-0.39844 -0.09375,-0.80469 -0.09375,-1.21875c0,-4.41016 3.58984,-8 8,-8zM5.46875,13.28125c0.39453,0 1.59375,0.14063 1.75,0.15625c0.01953,0.05469 0.03906,0.10547 0.0625,0.15625c-0.42969,-0.03906 -1.26172,-0.09766 -1.8125,-0.03125c-0.36719,0.04297 -0.83594,0.17578 -1.25,0.28125c-0.03125,-0.125 -0.07031,-0.24609 -0.09375,-0.375c0.4375,-0.09375 1.01172,-0.1875 1.34375,-0.1875zM18.84375,13.5c0.39844,0.00391 0.76172,0.07031 1,0.125c-0.01172,0.06641 -0.04687,0.12109 -0.0625,0.1875c-0.25391,-0.05859 -0.67187,-0.14453 -1.15625,-0.15625c-0.23437,-0.00391 -0.60937,0.00781 -0.9375,0.03125c0.01563,-0.03125 0.01953,-0.0625 0.03125,-0.09375c0.33984,-0.04687 0.77344,-0.09766 1.125,-0.09375zM6.09375,13.78125c0.5625,0.00391 1.08984,0.04297 1.3125,0.0625c0.52344,0.97656 1.58203,1.69922 3.21875,2c-0.40234,0.22266 -0.76172,0.53516 -1.03125,0.90625c-0.23437,0.01953 -0.48047,0.03125 -0.71875,0.03125c-0.69531,0 -1.12891,-0.62109 -1.5,-1.15625c-0.375,-0.53516 -0.83594,-0.59375 -1.09375,-0.625c-0.26172,-0.03125 -0.35156,0.11719 -0.21875,0.21875c0.76172,0.58594 1.03516,1.28125 1.34375,1.90625c0.27734,0.5625 0.85938,0.875 1.5,0.875h0.125c-0.01953,0.10938 -0.03125,0.21094 -0.03125,0.3125v1.09375c-2.30859,-0.93359 -4.06641,-2.90625 -4.71875,-5.34375c0.41016,-0.10156 0.87109,-0.20703 1.21875,-0.25c0.16016,-0.01953 0.36328,-0.03516 0.59375,-0.03125zM18.625,13.90625c0.44922,0.01172 0.84766,0.09766 1.09375,0.15625c-0.55078,2.07031 -1.91016,3.79297 -3.71875,4.84375v-0.59375c0,-0.85156 -0.67187,-1.94531 -1.625,-2.46875c1.58203,-0.28906 2.61328,-0.98047 3.15625,-1.90625c0.37891,-0.02734 0.82422,-0.03906 1.09375,-0.03125zM12.5,18c0.27344,0 0.5,0.22656 0.5,0.5v1.4375c-0.32812,0.04297 -0.66016,0.0625 -1,0.0625v-1.5c0,-0.27344 0.22656,-0.5 0.5,-0.5zM10.5,19c0.27344,0 0.5,0.22656 0.5,0.5v0.4375c-0.33594,-0.04297 -0.67578,-0.10547 -1,-0.1875v-0.25c0,-0.27344 0.22656,-0.5 0.5,-0.5zM14.5,19c0.24219,0 0.45313,0.17578 0.5,0.40625c-0.32422,0.13281 -0.65625,0.25391 -1,0.34375v-0.25c0,-0.27344 0.22656,-0.5 0.5,-0.5z"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        <div>
+                            <strong>GitHub</strong>
+                            <p>github.com/MVDDMN</p>
+                        </div>
+                    </a>
+
                 </div>
-            </div>
+            </section>
 
-        </section>
-
-        <section id="contact" className="portfolio-section">
-            <h2>Contact</h2>
-            <div className="contact-cards">
-
-                <a
-                    className="contact-card"
-                    href="https://mail.google.com/mail/?view=cm&to=dkarlangelo21@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 256 256"
-                    >
-                        <g fill="#3359ee">
-                            <g transform="scale(5.12,5.12)">
-                                <path d="M12,23.403v-0.013v-13.001l-0.12,-0.089h-0.01l-2.73,-2.02c-1.67,-1.24 -4.05,-1.18 -5.53,0.28c-0.99,0.98 -1.61,2.34 -1.61,3.85v3.602zM38,23.39v0.013l10,-7.391v-3.602c0,-1.49 -0.6,-2.85 -1.58,-3.83c-1.46,-1.457 -3.765,-1.628 -5.424,-0.403l-2.876,2.123l-0.12,0.089zM14,24.868l10.406,7.692c0.353,0.261 0.836,0.261 1.189,0l10.405,-7.692v-13.001l-11,8.133l-11,-8.133zM38,25.889v15.111c0,0.552 0.448,1 1,1h6.5c1.381,0 2.5,-1.119 2.5,-2.5v-21.003zM12,25.889l-10,-7.392v21.003c0,1.381 1.119,2.5 2.5,2.5h6.5c0.552,0 1,-0.448 1,-1z"></path>
-                            </g>
-                        </g>
-                    </svg>
-                    <div>
-                        <strong>Email</strong>
-                        <p>dkarlangelo21@gmail.com</p>
-                    </div>
-                </a>
-
-                <a
-                    className="contact-card"
-                    href="https://www.linkedin.com/in/karl-angelo-dela-cruz-a09152282"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="28"
-                        height="28"
-                        viewBox="0 0 256 256"
-                    >
-                        <g fill="#3359ee">
-                            <g transform="scale(5.12,5.12)">
-                                <path d="M41,4h-32c-2.76,0 -5,2.24 -5,5v32c0,2.76 2.24,5 5,5h32c2.76,0 5,-2.24 5,-5v-32c0,-2.76 -2.24,-5 -5,-5zM17,20v19h-6v-19zM11,14.47c0,-1.4 1.2,-2.47 3,-2.47c1.8,0 2.93,1.07 3,2.47c0,1.4 -1.12,2.53 -3,2.53c-1.8,0 -3,-1.13 -3,-2.53zM39,39h-6c0,0 0,-9.26 0,-10c0,-2 -1,-4 -3.5,-4.04h-0.08c-2.42,0 -3.42,2.06 -3.42,4.04c0,0.91 0,10 0,10h-6v-19h6v2.56c0,0 1.93,-2.56 5.81,-2.56c3.97,0 7.19,2.73 7.19,8.26z"></path>
-                            </g>
-                        </g>
-                    </svg>
-                    <div>
-                        <strong>LinkedIn</strong>
-                        <p>Karl Angelo Dela Cruz</p>
-                    </div>
-                </a>
-
-
-                <a className="contact-card" href="https://github.com/MVDDMN" target="_blank" rel="noopener noreferrer">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0,0,256,256"
-                    >
-                        <g fill="#3359ee" fillRule="nonzero" stroke="none">
-                            <g transform="scale(10.66667,10.66667)">
-                                <path d="M12,2c-5.52344,0 -10,4.47656 -10,10c0,5.52344 4.47656,10 10,10c5.52344,0 10,-4.47656 10,-10c0,-5.52344 -4.47656,-10 -10,-10zM12,4c4.41016,0 8,3.58984 8,8c0,0.46875 -0.04687,0.92969 -0.125,1.375c-0.24609,-0.05469 -0.60937,-0.12109 -1.03125,-0.125c-0.3125,-0.00391 -0.70312,0.04688 -1.03125,0.09375c0.11328,-0.34766 0.1875,-0.73047 0.1875,-1.125c0,-0.96094 -0.46875,-1.85547 -1.21875,-2.59375c0.20703,-0.76953 0.41016,-2.08984 -0.125,-2.625c-1.58203,0 -2.45703,1.12891 -2.5,1.1875c-0.48828,-0.11719 -0.99219,-0.1875 -1.53125,-0.1875c-0.69141,0 -1.35156,0.125 -1.96875,0.3125l0.1875,-0.15625c0,0 -0.87891,-1.21875 -2.5,-1.21875c-0.56641,0.57031 -0.30859,2.01563 -0.09375,2.75c-0.76562,0.73047 -1.25,1.59375 -1.25,2.53125c0,0.32813 0.07813,0.64063 0.15625,0.9375c-0.27734,-0.03125 -1.27734,-0.125 -1.6875,-0.125c-0.36328,0 -0.92578,0.08594 -1.375,0.1875c-0.0625,-0.39844 -0.09375,-0.80469 -0.09375,-1.21875c0,-4.41016 3.58984,-8 8,-8zM5.46875,13.28125c0.39453,0 1.59375,0.14063 1.75,0.15625c0.01953,0.05469 0.03906,0.10547 0.0625,0.15625c-0.42969,-0.03906 -1.26172,-0.09766 -1.8125,-0.03125c-0.36719,0.04297 -0.83594,0.17578 -1.25,0.28125c-0.03125,-0.125 -0.07031,-0.24609 -0.09375,-0.375c0.4375,-0.09375 1.01172,-0.1875 1.34375,-0.1875zM18.84375,13.5c0.39844,0.00391 0.76172,0.07031 1,0.125c-0.01172,0.06641 -0.04687,0.12109 -0.0625,0.1875c-0.25391,-0.05859 -0.67187,-0.14453 -1.15625,-0.15625c-0.23437,-0.00391 -0.60937,0.00781 -0.9375,0.03125c0.01563,-0.03125 0.01953,-0.0625 0.03125,-0.09375c0.33984,-0.04687 0.77344,-0.09766 1.125,-0.09375zM6.09375,13.78125c0.5625,0.00391 1.08984,0.04297 1.3125,0.0625c0.52344,0.97656 1.58203,1.69922 3.21875,2c-0.40234,0.22266 -0.76172,0.53516 -1.03125,0.90625c-0.23437,0.01953 -0.48047,0.03125 -0.71875,0.03125c-0.69531,0 -1.12891,-0.62109 -1.5,-1.15625c-0.375,-0.53516 -0.83594,-0.59375 -1.09375,-0.625c-0.26172,-0.03125 -0.35156,0.11719 -0.21875,0.21875c0.76172,0.58594 1.03516,1.28125 1.34375,1.90625c0.27734,0.5625 0.85938,0.875 1.5,0.875h0.125c-0.01953,0.10938 -0.03125,0.21094 -0.03125,0.3125v1.09375c-2.30859,-0.93359 -4.06641,-2.90625 -4.71875,-5.34375c0.41016,-0.10156 0.87109,-0.20703 1.21875,-0.25c0.16016,-0.01953 0.36328,-0.03516 0.59375,-0.03125zM18.625,13.90625c0.44922,0.01172 0.84766,0.09766 1.09375,0.15625c-0.55078,2.07031 -1.91016,3.79297 -3.71875,4.84375v-0.59375c0,-0.85156 -0.67187,-1.94531 -1.625,-2.46875c1.58203,-0.28906 2.61328,-0.98047 3.15625,-1.90625c0.37891,-0.02734 0.82422,-0.03906 1.09375,-0.03125zM12.5,18c0.27344,0 0.5,0.22656 0.5,0.5v1.4375c-0.32812,0.04297 -0.66016,0.0625 -1,0.0625v-1.5c0,-0.27344 0.22656,-0.5 0.5,-0.5zM10.5,19c0.27344,0 0.5,0.22656 0.5,0.5v0.4375c-0.33594,-0.04297 -0.67578,-0.10547 -1,-0.1875v-0.25c0,-0.27344 0.22656,-0.5 0.5,-0.5zM14.5,19c0.24219,0 0.45313,0.17578 0.5,0.40625c-0.32422,0.13281 -0.65625,0.25391 -1,0.34375v-0.25c0,-0.27344 0.22656,-0.5 0.5,-0.5z"></path>
-                            </g>
-                        </g>
-                    </svg>
-                    <div>
-                        <strong>GitHub</strong>
-                        <p>github.com/MVDDMN</p>
-                    </div>
-                </a>
-
-            </div>
-        </section>
-
-    </main>
-);
+        </main>
+    );
+};
 
 export default Body;
