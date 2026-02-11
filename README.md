@@ -35,6 +35,6 @@ This portfolio is publicly accessible and can be viewed directly in a browser. F
 
 ## License & Copyright
 
-© 2025 Karl Angelo P. Dela Cruz. All rights reserved.
+© 2026 Karl Angelo P. Dela Cruz. All rights reserved.
 
 This portfolio and its contents are **publicly accessible** for professional and educational purposes. Redistribution or reproduction of this portfolio, in whole or in part, is not permitted without explicit permission from Karl Angelo P. Dela Cruz.
