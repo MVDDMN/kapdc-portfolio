@@ -14,10 +14,20 @@ const Body: React.FC = () => {
             <section id="resume" className="portfolio-section">
                 <h2>My Documents</h2>
                 <div className="resume-downloads">
-                    <a href="/files/cv.pdf" download className="resume-button">
+                    <a
+                        href="https://drive.google.com/file/d/1LLzBIhkHKh1Brq_rclplnrRMeDDFIKJb/view?usp=sharing"
+                        className="resume-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         Download My CV
                     </a>
-                    <a href="/files/resume.pdf" download className="resume-button">
+                    <a
+                        href="https://drive.google.com/file/d/1wtEd4RIuqRHNtLyw6hT9hRpu78MpeXeD/view?usp=sharing"
+                        className="resume-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         Download My Resume
                     </a>
                 </div>
